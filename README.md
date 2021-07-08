@@ -60,7 +60,7 @@ client.on('ready', () => {
 })
 
 /** WHEN MESSAGE IS SENT */
-client.on('message', (message) => {
+client.on('message', async (message) => {
   const {
     content,
     author: { bot },
@@ -78,7 +78,7 @@ client.on('message', (message) => {
 
   // dynamically execute the command
   try {
-    client.commands.get(command).execute(message, args)
+    await client.commands.get(command).execute(message, args)
   } catch (error) {
     console.log(error)
     message.reply('there was an error trying to execute that command!')
@@ -102,6 +102,18 @@ module.exports = {
   // function to execute when the command is called
   execute(message, args) {
     message.channel.send('pong')
+  },
+}
+```
+
+If the execute function needs to return a promise (need async/await), add the following async/await as following:
+
+```javascript
+module.exports = {
+  name: 'beep',
+  description: 'Beep Boop!',
+  async execute(message, args) {
+    await message.channel.send('boop')
   },
 }
 ```

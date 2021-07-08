@@ -31,9 +31,10 @@ client.on('ready', () => {
 })
 
 /** WHEN MESSAGE IS SENT */
-client.on('message', (message) => {
+client.on('message', async (message) => {
   const {
     content,
+    channel,
     author: { bot },
   } = message
 
@@ -49,7 +50,7 @@ client.on('message', (message) => {
 
   // dynamically execute the command
   try {
-    client.commands.get(command).execute(message, args)
+    await client.commands.get(command).execute(message, args)
   } catch (error) {
     console.log(error.red.inverse)
     message.reply('there was an error trying to execute that command!')
