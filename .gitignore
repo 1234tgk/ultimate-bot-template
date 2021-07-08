@@ -1,0 +1,10 @@
+# packages
+node_modules
+
+# Log files
+logs
+*.logs
+
+# env file
+.env
+secret.txt

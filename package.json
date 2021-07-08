@@ -1,0 +1,17 @@
+{
+  "name": "ultimate-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Taehyeon Kim",
+  "license": "MIT",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "discord.js": "^12.5.3",
+    "dotenv": "^10.0.0"
+  }
+}
