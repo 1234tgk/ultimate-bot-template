@@ -4,6 +4,7 @@ const Discord = require('discord.js')
 const colors = require('colors')
 const dotenv = require('dotenv')
 dotenv.config()
+const { TOKEN, PREFIX } = require('./config.js')
 
 /** CREATE CLIENT (BOT) */
 let client = new Discord.Client()
@@ -23,9 +24,6 @@ for (const file of commandFiles) {
   client.commands.set(command.name, command)
 }
 
-/** GET PREFIX */
-const prefix = process.env.PREFIX
-
 /** WHEN BOT IS LOGGED IN */
 client.on('ready', () => {
   console.log(`Bot <${client.user.tag}> is now active`.green.inverse)
@@ -40,10 +38,10 @@ client.on('message', async (message) => {
   } = message
 
   // check if the message is from a bot
-  if (!content.startsWith(prefix) || bot) return
+  if (!content.startsWith(PREFIX) || bot) return
 
   // divide the message into command and argv
-  const args = content.slice(prefix.length).trim().split(/ +/) // if content was '!ping let's play', args would be [ping, let's, play]
+  const args = content.slice(PREFIX.length).trim().split(/ +/) // if content was '!ping let's play', args would be [ping, let's, play]
   const command = args.shift().toLowerCase() // now, command is 'ping', args is [let's, play]
 
   // if the command is not part of the list, do nothing
@@ -69,4 +67,4 @@ client.on('messageDelete', async (message) => {
 })
 
 /** ACTIVATE CLIENT (BOT) */
-client.login(process.env.TOKEN)
+client.login(TOKEN)
