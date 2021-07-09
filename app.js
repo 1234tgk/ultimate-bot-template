@@ -52,6 +52,10 @@ client.on('message', async (message) => {
   // dynamically execute the command
   try {
     await client.commands.get(command).execute(message, args)
+
+    // audit on logs
+    const auditMessage = require('./utils/audits/auditMessage.js')
+    await auditMessage(message)
   } catch (error) {
     console.log(error.red.inverse)
     message.reply('there was an error trying to execute that command!')
