@@ -70,7 +70,7 @@ if (!deletionLog) {
 
 Note that the bot needs permission to view audit log in order for this to work.
 
-`executor` and `target` from `deletionLog` and `author` from `message` are all usable info when auditing activities.
+`executor` and `target` from `deletionLog` and `author` from `message` are all usable info when auditing activities. Keep in mind that the deletion of user's message by the admin will not be logged in guild's audit. Therefore, `target.id !== author.id` probably means the deletion of the message was done by the admin.
 
 `logs.send('message')` writes message to logs channel.
 
