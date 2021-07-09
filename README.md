@@ -16,7 +16,8 @@ Folders:
 
 Root files:
 
-- config.json or .env
+- .env
+- config.js
 - app.js
 - package-lock.json
 - package.json
@@ -32,8 +33,7 @@ app.js file template (with comment)
 /** HEADER & IMPORT */
 const fs = require('fs')
 const Discord = require('discord.js')
-const dotenv = require('dotenv')
-dotenv.config()
+const { TOKEN, PREFIX } = require('./config.js')
 
 /** CREATE CLIENT (BOT) */
 let client = new Discord.Client()
@@ -51,9 +51,6 @@ for (const file of commandFiles) {
   client.commands.set(command.name, command)
 }
 
-/** GET PREFIX */
-const prefix = '!'
-
 /** WHEN BOT IS LOGGED IN */
 client.on('ready', () => {
   // do something
@@ -67,10 +64,10 @@ client.on('message', async (message) => {
   } = message
 
   // check if the message is from a bot
-  if (!content.startsWith(prefix) || bot) return
+  if (!content.startsWith(PREFIX) || bot) return
 
   // divide the message into command and args
-  const args = content.slice(prefix.length).trim().split(/ +/)
+  const args = content.slice(PREFIX.length).trim().split(/ +/)
   const command = args.shift().toLowerCase()
 
   // if the command is not part of the list, do nothing
@@ -89,14 +86,14 @@ client.on('message', async (message) => {
 // look at utils/audits for more details
 
 /** ACTIVATE CLIENT (BOT) */
-client.login(process.env.TOKEN)
+client.login(TOKEN)
 ```
 
 To see how commands are created, read README.md in commands folder.
 
 ## Important Note
 
-Many `require` (or import) statement are in the middle of the file. This was done to show what part or the code requires the imported module/methods. In real project, those imports should be on the top of the file.
+Many `require` (or import) statement are in the middle of the file throughout this project. This was done to show what part or the code requires the imported module/methods. In real project, those imports should be on the top of the file.
 
 ## Credit
 

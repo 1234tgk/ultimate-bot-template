@@ -1,15 +1,14 @@
 const fs = require('fs')
-const dotenv = require('dotenv')
-dotenv.config()
+const { PREFIX } = require('../config.js')
 
 const commandFiles = fs
   .readdirSync('./commands')
   .filter((file) => file.endsWith('.js') && file !== 'help.js')
 
-let helpString = `\n  ${process.env.PREFIX}help: help new users`
+let helpString = `\n  ${PREFIX}help: help new users`
 for (const file of commandFiles) {
   const command = require(`./${file}`)
-  helpString += `\n  ${process.env.PREFIX}${command.name}: ${command.description}`
+  helpString += `\n  ${PREFIX}${command.name}: ${command.description}`
 }
 
 module.exports = {

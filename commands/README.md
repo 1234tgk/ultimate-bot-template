@@ -1,4 +1,6 @@
-# Commands explanation
+# Commands
+
+## Commands file structure
 
 The name of the file can be anything, however, matching the name of the command and the name of the file is recommended.
 
@@ -23,6 +25,35 @@ module.exports = {
   description: 'Beep Boop!',
   async execute(message, args) {
     await message.channel.send('boop')
+  },
+}
+```
+
+## help.js explanation
+
+`help.js` dynamically build the helpful message by fetching all other commands in the same folder. The process itself is very similar to how `app.js` creates collections of all discord commands. When fetching all files within the command folder, `help.js` file itself should be filtered out from the folder as circular dependencies are not allowd in Node.js.
+
+Below is the code for help.js:
+
+```javascript
+const fs = require('fs')
+const { PREFIX } = require('../config.js')
+
+const commandFiles = fs
+  .readdirSync('./commands')
+  .filter((file) => file.endsWith('.js') && file !== 'help.js')
+
+let helpString = `\n  ${PREFIX}help: help new users`
+for (const file of commandFiles) {
+  const command = require(`./${file}`)
+  helpString += `\n  ${PREFIX}${command.name}: ${command.description}`
+}
+
+module.exports = {
+  name: 'help',
+  description: 'help new users',
+  execute(message, args) {
+    message.reply(helpString)
   },
 }
 ```

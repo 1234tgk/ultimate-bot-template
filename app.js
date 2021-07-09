@@ -2,8 +2,6 @@
 const fs = require('fs')
 const Discord = require('discord.js')
 const colors = require('colors')
-const dotenv = require('dotenv')
-dotenv.config()
 const { TOKEN, PREFIX } = require('./config.js')
 
 /** CREATE CLIENT (BOT) */
