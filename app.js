@@ -8,6 +8,8 @@ dotenv.config()
 /** CREATE CLIENT (BOT) */
 let client = new Discord.Client()
 
+/** CREATE LOG FOLDER AND FILE */
+
 /** GET COMMANDS FILE, GET ALL COMMANDS */
 client.commands = new Discord.Collection()
 const commandFiles = fs
@@ -34,7 +36,6 @@ client.on('ready', () => {
 client.on('message', async (message) => {
   const {
     content,
-    channel,
     author: { bot },
   } = message
 
@@ -55,6 +56,12 @@ client.on('message', async (message) => {
     console.log(error.red.inverse)
     message.reply('there was an error trying to execute that command!')
   }
+})
+
+/** AUDIT DELETE MESSAGE */
+client.on('messageDelete', async (message) => {
+  const audit = require('./utils/audits/auditMessageDelete.js')
+  await audit(message)
 })
 
 /** ACTIVATE CLIENT (BOT) */

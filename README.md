@@ -83,6 +83,8 @@ client.on('message', async (message) => {
     console.log(error)
     message.reply('there was an error trying to execute that command!')
   }
+
+  /** AUDIT LOG */
 })
 
 /** ACTIVATE CLIENT (BOT) */
