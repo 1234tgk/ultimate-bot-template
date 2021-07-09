@@ -94,6 +94,10 @@ client.login(process.env.TOKEN)
 
 To see how commands are created, read README.md in commands folder.
 
+## Important Note
+
+Many `require` (or import) statement are in the middle of the file. This was done to show what part or the code requires the imported module/methods. In real project, those imports should be on the top of the file.
+
 ## Credit
 
 The project was written by me with the help of Discord.js documentation.
