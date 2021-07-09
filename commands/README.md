@@ -31,7 +31,7 @@ module.exports = {
 
 ## help.js explanation
 
-`help.js` dynamically build the helpful message by fetching all other commands in the same folder. The process itself is very similar to how `app.js` creates collections of all discord commands. When fetching all files within the command folder, `help.js` file itself should be filtered out from the folder as circular dependencies are not allowd in Node.js.
+`help.js` dynamically build the helpful message by fetching all other commands in the same folder. The process itself is very similar to how `app.js` creates collections of all discord commands. When fetching all files within the command folder, `help.js` file itself should be filtered out from the folder as circular dependencies are not allowed (or rather, not appreciated) in Node.js.
 
 Below is the code for help.js:
 
