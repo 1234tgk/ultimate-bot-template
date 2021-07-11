@@ -99,7 +99,7 @@ Many `require` (or import) statement are in the middle of the file throughout th
 
 The link to invite any bot to a server can be found here. Note that the client id and possible permission integer needs to be changed for each bot.
 
-https://discord.com/api/oauth2/authorize?client_id=157730590492196864&scope=bot&permissions=1
+`https://discord.com/api/oauth2/authorize?client_id=157730590492196864&scope=bot&permissions=1`
 
 ## Credit
 
