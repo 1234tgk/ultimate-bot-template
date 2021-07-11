@@ -95,6 +95,12 @@ To see how commands are created, read README.md in commands folder.
 
 Many `require` (or import) statement are in the middle of the file throughout this project. This was done to show what part or the code requires the imported module/methods. In real project, those imports should be on the top of the file.
 
+## Miscellaneous Note
+
+The link to invite any bot to a server can be found here. Note that the client id and possible permission integer needs to be changed for each bot.
+
+https://discord.com/api/oauth2/authorize?client_id=157730590492196864&scope=bot&permissions=1
+
 ## Credit
 
 The project was written by me with the help of Discord.js documentation.
